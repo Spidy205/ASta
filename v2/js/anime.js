@@ -6,7 +6,7 @@ const recommendationsapi = "/recommendations/";
 
 // Api Server Manager
 
-const AvailableServers = ["https://asta-api.sb543267gmailcom.workers.dev/","https://vip-gamma.vercel.app/" ,"https://api3.sb543267gmailcom.workers.dev/","https://api100.sb543267gmailcom.workers.dev/","https://api1.sb543267gmailcom.workers.dev/"];
+const AvailableServers = ["https://googolplex-api.vercel.app/","https://asta-api.sb543267gmailcom.workers.dev/","https://vip-gamma.vercel.app/" ,"https://api3.sb543267gmailcom.workers.dev/","https://api100.sb543267gmailcom.workers.dev/","https://api1.sb543267gmailcom.workers.dev/"];
 
 function getApiServer() {
     return AvailableServers[Math.floor(Math.random() * AvailableServers.length)];
