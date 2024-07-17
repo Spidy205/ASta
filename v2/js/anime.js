@@ -1,6 +1,6 @@
 // Api urls
 
-const ProxyApi = "https://proxy.sb543267gmailcom.workers.dev/?u=";
+const ProxyApi = "https://proxy2-psi.vercel.app/";
 const animeapi = "/anime/";
 const recommendationsapi = "/recommendations/";
 

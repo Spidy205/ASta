@@ -1,4 +1,4 @@
-const ProxyApi = "https://proxy.sb543267gmailcom.workers.dev/?u=";
+const ProxyApi = "https://proxy2-psi.vercel.app/";
     searchapi = "/search/",
     
     AvailableServers = ["https://asta-api.sb543267gmailcom.workers.dev/","https://vip-gamma.vercel.app/" ,"https://api3.sb543267gmailcom.workers.dev/","https://api100.sb543267gmailcom.workers.dev/","https://api1.sb543267gmailcom.workers.dev/"];
