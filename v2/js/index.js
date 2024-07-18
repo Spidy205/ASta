@@ -263,3 +263,7 @@ getJson(IndexApi).then((data) => {
     });
 });
 
+// Add an event listener to the close button
+document.querySelector('.close-popup').addEventListener('click', function() {
+  document.querySelector('.popup-container').style.display = 'none';
+});
