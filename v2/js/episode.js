@@ -1,4 +1,4 @@
-const ProxyApi = "https://proxy2-psi.vercel.app/";
+const ProxyApi = " https://proxy11.sb543267gmailcom.workers.dev/?u=";
     animeapi = "/anime/",
     episodeapi = "/episode/",
     dlapi = "/download/",
