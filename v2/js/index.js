@@ -159,3 +159,15 @@ fetch('https://proxy11.sb543267gmailcom.workers.dev/?u=/?u=https://asta-api.sb54
 .then(response => response.json())
 .then(data => console.log(data))
 .catch(error => console.error(error));
+
+// Gulpfile.js
+const gulp = require('gulp');
+const uglify = require('gulp-uglify');
+const concat = require('gulp-concat');
+
+gulp.task('minify-js', function() {
+  return gulp.src('js/*.js')
+    .pipe(uglify())
+    .pipe(concat('script.min.js'))
+    .pipe(gulp.dest('js'));
+});
