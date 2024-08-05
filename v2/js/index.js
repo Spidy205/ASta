@@ -2,9 +2,7 @@ const ProxyApi = "https://proxy11.sb543267gmailcom.workers.dev/?u=",
     IndexApi = "/home",
     recentapi = "/recent/",
     AvailableServers = [
-        "https://googolplex-api.vercel.app/",
         "https://asta-api.sb543267gmailcom.workers.dev/",
-        "https://vip-gamma.vercel.app/",
         "https://api3.sb543267gmailcom.workers.dev/",
         "https://api100.sb543267gmailcom.workers.dev/",
         "https://api1.sb543267gmailcom.workers.dev/",
@@ -170,4 +168,19 @@ gulp.task('minify-js', function() {
     .pipe(uglify())
     .pipe(concat('script.min.js'))
     .pipe(gulp.dest('js'));
+});
+
+// Get the popup and close button elements
+const popup = document.getElementById('popup');
+const closePopup = document.getElementById('close-popup');
+const showPopup = document.getElementById('show-popup');
+
+// Add event listener to show popup button
+showPopup.addEventListener('click', () => {
+  popup.style.display = 'flex'; /* Use flex to center the popup content */
+});
+
+// Add event listener to close popup button
+closePopup.addEventListener('click', () => {
+  popup.style.display = 'none';
 });
