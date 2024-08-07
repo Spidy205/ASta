@@ -1,0 +1,7 @@
+$ORIGIN lite-stream.cloudns.ch.
+@	3600	IN	SOA	ns51.cloudns.net. support.cloudns.net. 2024080707 7200 1800 1209600 3600
+@	3600	IN	NS	ns51.cloudns.net.
+@	3600	IN	NS	ns52.cloudns.net.
+@	3600	IN	NS	ns53.cloudns.net.
+@	3600	IN	NS	ns54.cloudns.net.
+@	3600	IN	TXT	"https://lite-stream.vercel.app/"
