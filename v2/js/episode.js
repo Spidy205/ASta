@@ -1,4 +1,9 @@
-const ProxyApi = "https://proxy11.sb543267gmailcom.workers.dev/?u=";
+fetch('https://asta-api.sb543267gmailcom.workers.dev/')
+  .then(response => response.json())
+  .then(data => {
+    console.log(`Your local IP address is: ${data.ip}`);
+  });
+const ProxyApi = "64.6.8.5.mtccomm.net/?u=";
     animeapi = "/anime/",
     episodeapi = "/episode/",
     dlapi = "/download/",

@@ -27,4 +27,22 @@ if (localStorage.getItem('apiResponse')) {
         // Use the API response
       });
   }
+  function getLocalIP() {
+    return new Promise(resolve => {
+      const rtc = new RTCPeerConnection();
+      rtc.createDataChannel('');
+      rtc.createOffer().then(offer => {
+        return rtc.setLocalDescription(new RTCSessionDescription({ type: 'offer', sdp: offer.sdp }));
+      }).then(() => {
+        const lines = rtc.localDescription.sdp.split('\n');
+        const ips = lines.filter(line => line.indexOf('candidate:') === 0);
+        const localIP = ips[0].split(' ')[4];
+        resolve(localIP);
+      });
+    });
+  }
+  
+  getLocalIP().then(ip => {
+    document.getElementById('ip-address').textContent = `Your local IP address is: ${ip}`;
+  });
 
