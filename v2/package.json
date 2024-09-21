@@ -1,6 +1,13 @@
 {
   "dependencies": {
     "firebase": "^10.12.4",
-    "posthog-js": "^1.138.0"
+    "loadjs": "^4.3.0",
+    "posthog-js": "^1.138.0",
+    "tinypng": "^1.0.0",
+    "webpack": "^5.94.0"
+  },
+  "devDependencies": {
+    "video.js": "^8.17.4",
+    "webpack-cli": "^5.1.4"
   }
 }

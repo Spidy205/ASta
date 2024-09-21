@@ -1,3 +1,12 @@
+// worker.js
+self.onmessage = function(event) {
+  const data = event.data;
+  // Perform computationally expensive task
+  const result = expensiveTask(data);
+  self.postMessage(result);
+};
+
+
 self.addEventListener('message', (event) => {
     const data = event.data;
   

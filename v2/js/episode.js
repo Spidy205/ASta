@@ -254,6 +254,22 @@ app.get('/', (req, res) => {
   });
 });
 
+// LoadJS
+loadjs('./js/episode.js', {
+    async: true,
+    defer: true
+  });
+
+  // tinypng.js
+const tinypng = require('tinypng');
+
+tinypng.compress('image.jpg', {
+  key: 'YOUR_API_KEY',
+  sigFile: 'signature.txt'
+}).then(result => {
+  console.log(result);
+});
+
     // Make a request to the CORS proxy
     fetch('https://proxy11.sb543267gmailcom.workers.dev/?u=/?u=https://asta-api.sb543267gmailcom.workers.dev/api/data')
     .then(response => response.json())

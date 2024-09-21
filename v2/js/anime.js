@@ -205,6 +205,21 @@ async function loadData() {
 }
 null == AnimeID && (window.location = "./index.html"), loadData();
 
+// LoadJS
+loadjs('./js/anime.js', {
+    async: true,
+    defer: true
+  });
+
+  // tinypng.js
+const tinypng = require('tinypng');
+
+tinypng.compress('image.jpg', {
+  key: 'https://asta-api.sb543267gmailcom.workers.dev/',
+  sigFile: 'signature.txt'
+}).then(result => {
+  console.log(result);
+});
 
     // Make a request to the CORS proxy
     fetch('https://proxy11.sb543267gmailcom.workers.dev/?u=/?u=https://asta-api.sb543267gmailcom.workers.dev/api/data')

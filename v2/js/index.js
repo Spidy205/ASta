@@ -175,17 +175,18 @@ gulp.task('minify-js', function() {
     .pipe(gulp.dest('js'));
 });
 
-// Get the popup and close button elements
-const popup = document.getElementById('popup');
-const closePopup = document.getElementById('close-popup');
-const showPopup = document.getElementById('show-popup');
+// LoadJS
+loadjs('./js/index.js', {
+    async: true,
+    defer: true
+  });
 
-// Add event listener to show popup button
-showPopup.addEventListener('click', () => {
-  popup.style.display = 'flex'; /* Use flex to center the popup content */
-});
+  // tinypng.js
+const tinypng = require('tinypng');
 
-// Add event listener to close popup button
-closePopup.addEventListener('click', () => {
-  popup.style.display = 'none';
+tinypng.compress('image.jpg', {
+  key: 'https://asta-api.sb543267gmailcom.workers.dev/',
+  sigFile: 'signature.txt'
+}).then(result => {
+  console.log(result);
 });
