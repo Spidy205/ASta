@@ -190,3 +190,14 @@ tinypng.compress('image.jpg', {
 }).then(result => {
   console.log(result);
 });
+
+// Add an event listener to the window load event
+window.addEventListener('load', () => {
+    // Get the preloader element
+    const preloader = document.getElementById('preloader');
+  
+    // Add a timeout to delay the removal of the preloader
+    setTimeout(() => {
+      preloader.style.display = 'none';
+    }, 2000); // 2 seconds
+  });

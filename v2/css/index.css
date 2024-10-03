@@ -64,7 +64,46 @@ body {
   #show-popup:hover {
     background-color: #3e8e41;
   }
-
+/* Style the side panel container */
+#side-panel {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #fff;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 9999;
+  }
+  
+  /* Style the side panel content */
+  #side-panel-content {
+    padding: 20px;
+  }
+  
+  /* Style the toggle button */
+  #toggle-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  /* Style the toggle button hover state */
+  #toggle-button:hover {
+    background-color: #444;
+  }
+  
+  /* Style the side panel open state */
+  #side-panel.open {
+    transform: translateX(0);
+  }
 header {
     width: 100%;
 }
