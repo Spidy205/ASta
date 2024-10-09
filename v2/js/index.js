@@ -201,3 +201,4 @@ window.addEventListener('load', () => {
       preloader.style.display = 'none';
     }, 2000); // 2 seconds
   });
+  

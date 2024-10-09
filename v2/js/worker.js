@@ -6,7 +6,6 @@ self.onmessage = function(event) {
   self.postMessage(result);
 };
 
-
 self.addEventListener('message', (event) => {
     const data = event.data;
   
