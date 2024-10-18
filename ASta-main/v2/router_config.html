@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Router Configuration Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <h1>Router Configuration Tool</h1>
+  <form id="config-form">
+    <label for="dns-server1">DNS Server 1:</label>
+    <input type="text" id="dns-server1" value="8.8.8.8"><br><br>
+    <label for="dns-server2">DNS Server 2:</label>
+    <input type="text" id="dns-server2" value="8.8.4.4"><br><br>
+    <label for="router-ip">Router IP:</label>
+    <input type="text" id="router-ip" value="192.168.1.1"><br><br>
+    <label for="subnet-mask">Subnet Mask:</label>
+    <input type="text" id="subnet-mask" value="255.255.255.0"><br><br>
+    <label for="gateway-ip">Gateway IP:</label>
+    <input type="text" id="gateway-ip" value="192.168.1.254"><br><br>
+    <button type="button" onclick="generateConfig()">Generate Configuration</button>
+  </form>
+  <textarea id="config-output" readonly></textarea>
+
+  <script>
+    function generateConfig() {
+      const dnsServer1 = document.getElementById("dns-server1").value;
+      const dnsServer2 = document.getElementById("dns-server2").value;
+      const routerIP = document.getElementById("router-ip").value;
+      const subnetMask = document.getElementById("subnet-mask").value;
+      const gatewayIP = document.getElementById("gateway-ip").value;
+
+      const configScript = `
+        # Configure DNS settings
+        echo "nameserver ${dnsServer1}" >> /etc/resolv.conf
+        echo "nameserver ${dnsServer2}" >> /etc/resolv.conf
+
+        # Configure IP settings
+        ip addr add ${routerIP}/${subnetMask} brd ${routerIP} dev eth0
+        ip link set eth0 up
+        ip route add default via ${gatewayIP} dev eth0
+      `;
+
+      document.getElementById("config-output").value = configScript;
+    }
+  </script>
+</body>
+</html>
