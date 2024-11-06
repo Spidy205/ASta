@@ -6,7 +6,7 @@ fetch('https://asta-api.sb543267gmailcom.workers.dev/')
 const ProxyApi = "64.6.8.5.mtccomm.net/?u=",
     animeapi = "/anime/",
     recommendationsapi = "/recommendations/",
-    AvailableServers = [
+    AvailableServers = ["https://animedexapi.sb543267gmailcom.workers.dev/",
         "https://asta-api.sb543267gmailcom.workers.dev/",
         "https://api3.sb543267gmailcom.workers.dev/",
         "https://api100.sb543267gmailcom.workers.dev/",

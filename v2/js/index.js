@@ -6,11 +6,8 @@ fetch('https://asta-api.sb543267gmailcom.workers.dev/')
 const ProxyApi = "64.6.8.5.mtccomm.net/?u=",
     IndexApi = "/home",
     recentapi = "/recent/",
-    AvailableServers = [
-        "https://asta-api.sb543267gmailcom.workers.dev/",
-        "https://api3.sb543267gmailcom.workers.dev/",
-        "https://api100.sb543267gmailcom.workers.dev/",
-        "https://api1.sb543267gmailcom.workers.dev/",
+    AvailableServers = ["https://animedexapi.sb543267gmailcom.workers.dev/",
+        "https://litestreamapi.sb543267gmailcom.workers.dev/",
     ];
 function getApiServer() {
     return AvailableServers[Math.floor(Math.random() * AvailableServers.length)];
