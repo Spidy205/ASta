@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Set the domain and record name
+DOMAIN="cloudns.ch"
+RECORD_NAME="_vercel"
+
+# Set the expected TXT record value
+EXPECTED_VALUE="vc-domain-verify=lite-stream.cloudns.ch,4930c83d032b038d1dcf"
+
+# Use dig to get the TXT record value
+VALUE=$(dig +short ${RECORD_NAME}.${DOMAIN} TXT)
+
+# Check if the value matches the expected value
+if [ "${VALUE}" = "${EXPECTED_VALUE}" ]; then
+  echo "TXT record verified!"
+else
+  echo "TXT record verification failed."
+fi

@@ -1,0 +1,151 @@
+htpasswd -c /path/to/.htpasswd username
+
+ls -al /path/to/.htpasswd
+
+chmod 644 /path/to/.htpasswd
+
+AuthType Basic
+AuthName "Authorization required"
+AuthUserFile /path/to/.htpasswd
+Require valid-user
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <server>"
+  exit 1
+fi
+
+server=$1
+port=80
+
+echo "Starting proxy on port 8080..."
+nc -l -p 8080 -c "nc $server $port"
+
+
+
+#!/bin/bash
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <server>"
+  exit 1
+fi
+
+server=$1
+port=80
+
+if [ ! -f /path/to/.htpasswd ]; then
+  echo "Creating password file..."
+  htpasswd -c /path/to/.htpasswd user
+fi
+
+echo "Starting proxy on port 8080..."
+nc -l -p 8080 -c "
+  read -r line
+  if [[ $line == HTTP* ]]; then
+    echo \"HTTP/1.1 401 Unauthorized\"
+    echo \"WWW-Authenticate: Basic realm=\"My Realm\""
+    echo
+    read -r line
+    user=$(echo $line | cut -d: -f1)
+    pass=$(echo $line | cut -d: -f2)
+    if [[ $(htpasswd -c -v /path/to/.htpasswd $user 2>/dev/null) == \"Valid password\"]]; then
+      nc $server $port <<< \"$line\"
+    fi
+  else
+    nc $server $port <<< \"$line\"
+  fi
+"
+
+
+if [ -z "$1" ]; then
+  echo "Usage: $0 <google.com>"
+  exit 1
+fi
+
+dig +short "$1"
+
+# Minify HTML
+html-minifier --collapse-whitespace test.html -o test_min.html
+
+# Minify CSS
+cssnano css/bootstrap.css dist/css/bootstrap.css
+
+# Minify JS
+uglifyjs js/script.js -o js/script_min.js
+
+# 1. Minify your HTML, CSS, and JavaScript files
+html-minifier --input-dir . --output-dir . --collapse-whitespace --remove-comments
+cleancss -o style.min.css style.css
+uglifyjs script.js -o script.min.js
+
+# 2. Enable compression
+echo "AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css application/x-javascript application/javascript" | sudo tee /etc/apache2/mods-available/deflate.conf
+sudo a2enmod deflate
+sudo service apache2 restart
+
+# 3. Enable browser caching
+echo "ExpiresActive On
+ExpiresByType text/css 'access plus 1 year'
+ExpiresByType application/javascript 'access plus 1 year'
+ExpiresByType application/x-javascript 'access plus 1 year'
+ExpiresByType image/x-icon 'access plus 1 year'
+ExpiresByType image/jpg 'access plus 1 year'
+ExpiresByType image/jpeg 'access plus 1 year'
+ExpiresByType image/gif 'access plus 1 year'
+ExpiresByType image/png 'access plus 1 year'" | sudo tee /etc/apache2/mods-available/expires.conf
+sudo a2enmod expires
+sudo service apache2 restart
+
+# 4. Optimize images
+find . -type f -iname "*.jpg" -or -iname "*.jpeg" -or -iname "*.png" -or -iname "*.gif" | while read img; do
+  mogrify -strip -interlace Plane -quality 80 "$img"
+done
+
+# 5. Enable KeepAlive
+echo "KeepAlive On
+KeepAliveTimeout 5" | sudo tee /etc/apache2/mods-available/keepalive.conf
+sudo a2enmod headers
+sudo service apache2 restart
+
+# 6. Remove unused CSS and JavaScript
+uncss -m -u -r -C .csscomb.json --url file://$PWD/index.html > style.clean.css
+uglifyjs -m -c -o script.clean.js script.min.js
+
+
+#!//bash
+# Define the list pages to preloadpages=("https://litestream.pages.dev//"
+       "https://litestream.pages.dev/about"
+       "https://litestream.pages.dev/contact")
+
+# Loop through the list of pages and make requests to them
+for page in "${pages[@]}"; do
+  curl -s "$page" > /dev/null
+done
+
+echo "Cache warmed up!"
+#!/bin/bash
+
+# Set the website you want to connect to
+WEBSITE="https://lite-stream.vercel.app/"
+
+# Set the DNS server IP addresses
+DNS_SERVER1="8.8.8.8"
+DNS_SERVER2="8.8.4.4"
+
+# Set the IP address and subnet mask for your router
+ROUTER_IP="192.168.1.1"
+SUBNET_MASK="255.255.255.0"
+
+# Set the gateway IP address
+GATEWAY_IP="192.168.1.254"
+
+# Configure the DNS settings
+echo "nameserver $DNS_SERVER1" >> /etc/resolv.conf
+echo "nameserver $DNS_SERVER2" >> /etc/resolv.conf
+
+# Configure the IP settings
+ip addr add $ROUTER_IP/$SUBNET_MASK brd $ROUTER_IP dev eth0
+ip link set eth0 up
+ip route add default via $GATEWAY_IP dev eth0
+
+# Test the connection to the website
+ping -c 1 $https://lite-stream.vercel.app/

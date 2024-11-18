@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico" />
+    <title>Lite-Stream - VideoPlayer</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="max-age=31536000, public">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="plyerhs/plyr.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        body > .plyr {
+            width: 100%;
+            max-height: 100%;
+            aspect-ratio: 16/9;
+        }
+
+        video {
+            aspect-ratio: 16/9;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        @keyframes plyr__time-skip {
+            40% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .plyr__time-skip {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            width: 40%;
+            opacity: 0;
+            pointer-events: none;
+            text-align: center;
+        }
+
+        .plyr__time-skip.is-left {
+            left: 0;
+            background: linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+        }
+
+        .plyr__time-skip.is-right {
+            right: 0;
+            background: linear-gradient(90deg, transparent 0%, rgba(0, 0, 0, 0.5) 100%);
+        }
+
+        .plyr__time-skip.is-animated {
+            animation: plyr__time-skip ease 1s forwards;
+        }
+
+        :root {
+            --plyr-color-main: #1d3eac;
+        }
+    </style>
+</head>
+
+<body>
+    <video controls crossorigin playsinline></video>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.3/axios.min.js" integrity="sha512-zJXKBryKlsiDaWcWQ9fuvy50SG03/Qc5SqfLXxHmk9XiUUbcD9lXYj HDBxLFOuZSU6ULXaJ69bd7blSMEgxXNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.35/vue.cjs.js" integrity="sha512-DwjomU/dqDCIqQ0gYkhAIZLzMn43PV1SG3MNYXBY6Ge1YgR8+8yDLUkmYY5xxR0B+ypAm+MXcI/h1uuHZYWp5g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js"></script>
+    <script src="https://unpkg.com/plyr@3"></script>
+    <script src="plyerhs/plyr.min.js" defer></script>
+    <script src="plyerhs/plyr-hls.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="./js/asta.js" defer></script>
+    <script src="proxy.js" defer></script>
+    
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "73cd93711c634941a5f75b87abb82d1c"}'></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WG89GQBWVT"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-WG89GQBWVT');
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(location.search);
+            const source = params.get("url");
+            const id = params.get("episode_id");
+            const video = document.querySelector("video");
+
+            video.setAttribute("data-poster", ``);
+
+            const defaultOptions = {
+                keyboard: { focused: true, global: true },
+                controls: ["play-large", "play", "progress", "duration", "settings", "fullscreen"],
+                settings: ["quality", "speed"],
+                tooltips: { controls: true, seek: true },
+                displayDuration: true,
+                fullscreen: { enabled: true, fallback: true, iosNative: true },
+                mediaMetadata: { title: id, artist: "Lite-Stream", album: "Lite-Stream" }
+            };
+
+            if (Hls.isSupported()) {
+                const hls = new Hls();
+                hls.loadSource(source);
+                hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                    const availableQualities = hls.levels.map(l => l.height);
+                    defaultOptions.quality = {
+                        default: availableQualities[0],
+                        options: availableQualities,
+                        forced: true,
+                        onChange: updateQuality
+                    };
+                    const player = new Plyr(video, defaultOptions);
+                    configPlayer(player);
+                });
+                hls.attachMedia(video);
+                window.hls = hls;
+            } else {
+                const player = new Plyr(video, defaultOptions);
+                configPlayer(player);
+            }
+
+            function updateQuality(newQuality) {
+                window.hls.levels.forEach((level, levelIndex) => {
+                    if (level.height === newQuality) {
+                        window.hls.currentLevel = levelIndex;
+                    }
+                });
+            }
+
+            function configPlayer(player) {
+                player.on("ready", () => {
+                    const root = video.closest(".plyr--video");
+                    root.addEventListener("dblclick", event => event.preventDefault());
+
+                    const poster = root.querySelector(".plyr__poster");
+                    const timeSkip = document.createElement("div");
+                    timeSkip.className = "plyr__time-skip";
+                    poster.parentNode.insertBefore(timeSkip, poster);
+
+                    let clickedTimes = 0;
+                    let lastSideClicked;
+
+                    poster.addEventListener("click", function (event) {
+ clickedTimes++;
+
+                        if (poster.resetTimeout) {
+                            clearTimeout(poster.resetTimeout);
+                        }
+
+                        poster.resetTimeout = setTimeout(() => {
+                            clickedTimes = 0;
+                            lastSideClicked = undefined;
+                        }, 1000);
+
+                        if (clickedTimes < 2) {
+                            return;
+                        }
+
+                        const percentage = ((event.clientX - event.target.getBoundingClientRect().left) * 100) / event.target.offsetWidth;
+
+                        if (percentage < 40) {
+                            if (player.currentTime === 0 || lastSideClicked !== "L") {
+                                clearTimeout(poster.resetTimeout);
+                                return;
+                            }
+
+                            timeSkip.innerText = "❮❮\n" + (clickedTimes - 1) * 10 + "s";
+                            timeSkip.classList.add("is-left");
+                            timeSkip.classList.remove("is-right", "is-animated");
+                            setTimeout(() => timeSkip.classList.add("is-animated"), 1);
+                            lastSideClicked = "L";
+                            player.rewind();
+                        } else if (percentage > 60) {
+                            if (player.currentTime === player.duration || lastSideClicked !== "R") {
+                                clearTimeout(poster.resetTimeout);
+                                return;
+                            }
+
+                            timeSkip.innerText = "❯❯\n" + (clickedTimes - 1) * 10 + "s";
+                            timeSkip.classList.add("is-right");
+                            timeSkip.classList.remove("is-left", "is-animated");
+                            setTimeout(() => timeSkip.classList.add("is-animated"), 1);
+                            lastSideClicked = "R";
+                            player.forward();
+                        } else {
+                            lastSideClicked = "C";
+                            clickedTimes = 0;
+                        }
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

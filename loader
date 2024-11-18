@@ -1,0 +1,10 @@
+<img data-src="static\Asta.home.jpg" class="lazy-load">
+<img data-src="static\Logo.ico" class="lazy-load">
+<img data-src="static\header.png" class="lazy-load">
+<img data-src="static\loding.gif" class="lazy-load">
+<script>
+const lazyLoadImages = document.querySelectorAll('.lazy-load');
+
+const observer = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if
