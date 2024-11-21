@@ -1,238 +1,198 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <link rel="icon" type="image/x-icon" href="./static/Logo.ico" />
+ <link rel="icon" type="image/x-icon" href="./static/Logo.ico" />
     <title> Asta.TO - Watch Anime At HQ ads free </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="google-adsense-account" content="ca-pub-1216732149255021">
     <meta name="title" content="LiteStream - Watch High Quality Anime Online" />
-    <meta http-equiv="Cache-Control" content="max-age=315360 00, public">
-    <title>Lite-stream - Latest Anime News, Reviews, and Updates</title>
-    <meta charset="utf-8">
+    <meta http-equiv="Cache-Control" content="max-age=31536000, public">
     <meta name="description" content="Get the latest anime news, reviews, and updates on Anime Frenzy. Discover new anime shows, manga, and Japanese culture.">
     <meta name="keywords" content="anime, manga, japanese culture, latest anime news, anime reviews, anime updates">
-    <meta property="og:title" content="Lite-stream - Latest Anime News, Reviews, and Updates">
-    <meta property="og:description" content="Get the latest anime news, reviews, and updates on Anime Frenzy. Discover new anime shows, manga, and Japanese culture.">
-    <meta property="og:image" content="static\Logo.ico">
-    <meta property="og:url" content="https://lite-stream.vercel.app/">
-    <meta name="twitter:title" content="Lite-stream - Latest Anime News, Reviews, and Updates">
-    <meta name="twitter:description" content="Get the latest anime news, reviews, and updates on Anime Frenzy. Discover new anime shows, manga, and Japanese culture.">
-    <meta name="twitter:image" content="static\Logo.ico">
-    <link rel="canonical" href="https://lite-stream.vercel.app/">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    <meta name="robots" content="index, follow" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="google-adsense-account" content="ca-pub-1216732149255021">
-    <meta name="revisit-after" content="1 days" />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta http-equiv="Content-Language" content="en" />
-    <meta property="og:title" content="LiteStream - Watch High Quality Anime Online" />
-    <meta property="twitter:url" content="" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-DyZv3dB5eZ3m4n2g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/index.css">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lite-stream</title>
-    <!-- DNS Prefetching -->
-    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://www.google.com">
-    <link rel="dns-prefetch" href="https://www.gstatic.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-    <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
-    <!-- Preloading critical resources -->
-    <link rel="preload" href="css\index.css" as="style">
-    <link rel="preload" href="js\index.js" as="script">
-    <!-- Optimizing images -->
-    <!-- Enabling browser caching -->
-    <meta http-equiv="Cache-Control" content="max-age=31536000">
-    <!-- Minifying and compressing HTML, CSS, and JavaScript files -->
-    <script src="js/minified-script.js"></script>
-    <link rel="stylesheet" href="css/minified-style.css">
-    <!-- Using a content delivery network (CDN) -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-    <!-- Enabling HTTP/2 -->
-    <meta http-equiv="Upgrade-Insecure-Requests" content="1">
-    <!-- Website content goes here -->
-    <meta property="twitter:card" content="summary" />
-    <meta name="apple-mobile-web-app-status-bar" content="#" />
-    <link href="./css/index.css" rel="stylesheet" />
-    <script src="proxy.js"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1216732149255021"
-     crossorigin="anonymous"></script>
-    <meta name="monetag" content="7282fc5141e3ac8a33f5c57455c7ae51">
-    <meta name="google-adsense-account" content="ca-pub-1216732149255021">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1216732149255021"
-     crossorigin="anonymous"></script>
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="dns-prefetch" href="https://www.google.com">
-<link rel="dns-prefetch" href="https://www.gstatic.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
-      
+    <style>
+        /* Sidebar styles */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #2c3e50;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 20px;
+            overflow-y: auto;
+            transition: transform 0.3s ease; /* Smooth transition */
+            transform: translateX(0); /* Default position */
+            z-index: 1000; /* Ensure sidebar is above other content */
+        }
+
+        .sidebar.hidden {
+            transform: translateX(-100%); /* Hide sidebar */
+        }
+
+        .sidebar h2 {
+            color: #ecf0f1;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin: 15px 0;
+        }
+
+        .sidebar ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+        }
+
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            margin-left: 270px; /* Space for sidebar */
+            padding: 20px;
+        }
+
+        /* Button to toggle sidebar */
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 1000; /* Ensure button is above sidebar */
+            font-size: 16px; /* Increase button size for touch */
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                margin-left: 0; /* No margin for smaller screens */
+            }
+            .sidebar {
+                width: 200px; /* Adjust sidebar width for mobile */
+            }
+        }
+    </style>
 </head>
 
-
 <body>
-    <header id="head-">
-        
-        <div id="title1">
-            <a href="./index.html"><img width="" height="40" src="./static/header.png" alt="LiteStream"></a><h1 style="mask-image:center;" src="./static/header.png"></h1>
-        </div>
-        
-        <br>
-        <div id="search-div">
-            <form action="./search.html" method="GET">
-                <input type="text" name="query" id="query" placeholder="Search Anime..." required />
-                <button name="search" type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-    </header>
+    <button class="toggle-btn" onclick="toggleSidebar()">Toggle Sidebar</button>
 
-<marquee style="background-color:rgb(212, 209, 20); color:red;">
-    Please, reload page if you can't watch the video</marquee>
-        </div>
-    <section>
-   
-    <section>
-        <div class="slideshow-container"></div>
-    </section>
-
-    
-    <section>
-        <div class="divox">
-            <h2 id="latest">Most Popular Anime</h2>
-            <div id="latest2" class="popularg">MOST POPULAR Anime</div>
-        </div>
-    </section>
-
-    <section>
-        <div class="divox">
-            <h2 id="latest">Anime fetching from Another server</h2>
-            <div id="latest2" class="recent"></div>
-        </div>
-    </section>
-   
-    <div id="load">
-        <img src="static\Spinner@1x-0.2s-200px-200px.svg" alt="Loading..." />
-        </div>
-<!-- Add a div to contain the side panel -->
-<div id="side-panel">
-    <!-- Add a button to toggle the side panel -->
-    <button id="toggle-button">Toggle Side Panel</button>
-    <!-- Add a div to contain the side panel content -->
-    <div id="side-panel-content">
-      <!-- Add your side panel content here -->
-      <h1>Side Panel</h1>
-      <p>This is the side panel content.</p>
-      <ul>
-        <li><a href="#">Link 1</a></li>
-        <li><a href="#">Link 2</a></li>
-        <li><a href="#">Link 3</a></li>
-      </ul>
+    <div class="sidebar" id="sidebar">
+        <h2>Menu</h2>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Latest Anime</a></li>
+            <li><a href="#">Popular Anime</a></li>
+            <li><a href="#">Genres</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
     </div>
-  </div>
-        
-        <footer>
-            <nav>
-            <ul>
-              <li><a href="https://lite-stream.vercel.app/anime-page">Anime</a></li>
-              <li><a href="https://mangafoxfull.com/home-page">Manga</a></li>
-              <li><a href="https://dramacool.com.tr/kdrama-page">K-drama</a></li>
-              <li><a href="https://www.example.com/movies-page">Movies</a></li>
-            </ul>
-          </nav>
-            <div class="footer">
-            <div class="footer-row">
-                <a href="https://www.facebook.com/Sudeepbhujel27/"><i class="fa fa-facebook"></i></a>
-            <a href=""><i class="fa fa-linkedin"></i></a>
-            <a href="https://www.instagram.com/sudeep_bh_ujel/"><i class="fa fa-instagram"></i></a>
-            <a href=""><i class="fa fa-twitter"></i></a>
-            </div>
-            <div class="footer-row">
-            Lite-stream Copyright © 2024 Sudeep 
-            <a href=<p><a href="LICENSE.txt" target="hover-Button">License</a>
-                <a href=<p><a href="plyerhs\WhatsApp Image 2024-10-05 at 19.09.53_f7a864a6.jpg" target="hover-Button">donate</a>
-            </div>
-            </div>
-            </footer>
 
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1216732149255021"
-            crossorigin="anonymous"></script>
-       <!-- 12 -->
-       <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-1216732149255021"
-            data-ad-slot="6639778899"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-       <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-       </script>
-       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1216732149255021"
-     crossorigin="anonymous"></script>
-<ins class="adsbygoogle"
-     style="display:block; text-align:center;"
-     data-ad-layout="in-article"
-     data-ad-format="fluid"
-     data-ad-client="ca-pub-1216732149255021"
-     data-ad-slot="3322377610"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-<!-- HTML -->
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="script.js"></script>
-  <script src="./js/index.js"></script>
-  <script src"js\w3-total-cache.php"></script>
-    <script src="./js/asta.js"></script>
-    <script src="fix.js"></script>
-    <script protect="css\bash"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feature.js/1.1.3/feature.min.js" integrity="sha512-RyJ3SN820KfAv8czBzDj1Q2B+90erpAzKTN6hSJMVEzZOcL9z6GTaMyC4O/ScfgBNW00EKKL6hBFlAKaGkFrng==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-url/2.6.2/url.min.js" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/shred/0.8.10/shred.min.js" integrity="sha512-4DLKKSj639Us/1qlt7f0xAGuC15t9DhfAhJlEee7qRt46owj2J2isfGthrg/pAzEatXW/qquyxiDfkK1ao3gcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.3/axios.min.js" integrity="sha512-zJXKBryKlsiDaWcWQ9fuvy50SG03/Qc5SqfLXxHmk9XiUUbcD9lXYjHDBxLFOuZSU6ULXaJ69bd7blSMEgxXNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.4.35/vue.cjs.js" integrity="sha512-DwjomU/dqDCIqQ0gYkhAIZLzMn43PV1SG3MNYXBY6Ge1YgR8+8yDLUkmYY5xxR0B+ypAm+MXcI/h1uuHZYWp5g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" integrity="sha512-ykZ1QQr0Jy/4ZkvKuqWn4iF3lqPZyij9iRv6sGqLRdTPkY69YX6+7wvVGmsdBbiIfN/8OdsI7HABjvEok6ZopQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="optimize.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/script.js/2.5.9/script.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/sudeep3127y/asta.to97@main/dns.js"></script>
-    <script src="main.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/src/core.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/ansi-styles@6.2.1/index.min.js"></script>
-    <script src="https://kit.fontawesome.com/23b0acc186.js" crossorigin="anonymous" async></script>
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "73cd93711c634941a5f75b87abb82d1c"}'></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WG89GQBWVT"></script>
+    <div class="">
+        <h1></h1>
+        <p></p>
+    </div>
 
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-      
-        gtag('config', 'G-WG89GQBWVT');
-      </script>
-    </head>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('hidden');
+        }
 
-<script async src="https://fundingchoicesmessages.google.com/i/pub-1216732149255021?ers=1" nonce="iuj40-kdEVmc5Ee11SK4Ig"></script><script nonce="iuj40-kdEVmc5Ee11SK4Ig">(function() {function signalGooglefcPresent() {if (!window.frames['googlefcPresent']) {if (document.body) {const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe);} else {setTimeout(signalGooglefcPresent, 0);}}}signalGooglefcPresent();})();</script>
- 
+        // Optional: Close sidebar when clicking outside of it
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const toggleBtn = document.querySelector('.toggle-btn');
 
-<body>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1216732149255021"
-     crossorigin="anonymous"></script>
-<!-- Ola -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:728px;height:90px"
-     data-ad-client="ca-pub-1216732149255021"
-     data-ad-slot="3612730658"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+            if (!sidebar.contains(event.target) && !toggleBtn.contains(event.target)) {
+                sidebar.classList.add('hidden');
+            }
+        });
+    </script>
+
+    <div class="content">
+        <header id="head-">
+            <div id="title1">
+                <div class="header-container">
+                    <a href="./index.html"><img width="" height="40" src="./static/header.png" alt="LiteStream"></a>
+                    <h1 id="header-title"></h1>
+                </div>
+                <div id="search-div">
+                    <form action="./search.html" method="GET">
+                        <input type="text" name="query" id="query" placeholder="Search Anime..." required />
+                        <button name="search" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
+            </div>
+        </header>
+
+        <marquee style="background-color:rgb(212, 209, 20); color:red;">
+            Please, reload page if you can't watch the video</marquee>
+        <section>
+            <div class="slideshow-container"></div>
+        </section>
+        <section>
+            <div class="divox">
+                <h2 id="latest">Most Popular Anime</h2>
+                <div id="latest2" class="popularg">MOST POPULAR Anime</div>
+            </div>
+        </section>
+        <section>
+            <div class="divox">
+                <h2 id="latest">Anime fetching from Another server</h2>
+                <div id="latest2" class="recent"></div>
+            </div>
+        </section>
+        <div id="load">
+            <img src="static/Spinner@1x-0.2s-200px-200px.svg" alt="Loading..." />
+        </div>
+        <footer>
+            <nav>
+                <ul>
+                    <li><a href="https://lite-stream.vercel.app/anime-page">Anime</a></li>
+                    <li><a href="https://mangafoxfull.com/home-page">Manga</a></li>
+                    <li><a href="https://dramacool.com.tr/kdrama-page">K-drama</a></li>
+                    <li><a href="https://www.example.com/movies-page">Movies</a></li>
+                </ul>
+            </nav>
+            <div class="footer">
+                <div class="footer-row">
+                    <a href="https://www.facebook.com/Sudeepbhujel27/"><i class="fa fa-facebook"></i></a>
+                    <a href=""><i class="fa fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/sudeep_bh_ujel/"><i class="fa fa-instagram"></i></a>
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                </div>
+                <div class="footer-row">
+                    Lite-stream Copyright © 2024 Sudeep 
+                    <a href="LICENSE.txt" target="hover-Button">License</a>
+                    <a href="plyerhs/WhatsApp Image 2024-10-05 at 19.09.53_f7a864a6.jpg" target="hover-Button">donate</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1216732149255021" crossorigin="anonymous"></script>
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1216732149255021" data-ad-slot="6639778899" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="fix.js"></script>
 </body>
+</html>
 <script src="https://askelliebots.blob.core.windows.net/askelliefiles/widget-integration-861.js"></script>
-
-
-    
