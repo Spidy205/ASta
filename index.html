@@ -13,118 +13,26 @@
     <meta name="keywords" content="anime, manga, japanese culture, latest anime news, anime reviews, anime updates">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-DyZv3dB5eZ3m4n2g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5g5" crossorigin="anonymous">
     <link rel="stylesheet" href="css\index.css">
+    <link re="stylesheet" href="stylight.css"
 
-    <meta charset="UTF-8">
-    <style>
-        /* Sidebar styles */
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background-color: #2c3e50;
-            color: white;
-            position: fixed;
-            top: 0;
-            left: 0;
-            padding: 20px;
-            overflow-y: auto;
-            transition: transform 0.3s ease; /* Smooth transition */
-            transform: translateX(0); /* Default position */
-            z-index: 1000; /* Ensure sidebar is above other content */
-        }
+    <header class="header">
+        <nav class="navbar">
+        
+            <ul class="nav-menu" id="nav-menu">
+                <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Latest Anime</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Popular Anime</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Genres</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
 
-        .sidebar.hidden {
-            transform: translateX(-100%); /* Hide sidebar */
-        }
-
-        .sidebar h2 {
-            color: #ecf0f1;
-        }
-
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .sidebar ul li {
-            margin: 15px 0;
-        }
-
-        .sidebar ul li a {
-            color: #ecf0f1;
-            text-decoration: none;
-        }
-
-        .sidebar ul li a:hover {
-            text-decoration: underline;
-        }
-
-        .content {
-            margin-left: 270px; /* Space for sidebar */
-            padding: 20px;
-        }
-
-        /* Button to toggle sidebar */
-        .toggle-btn {
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background-color: #2980b9;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            cursor: pointer;
-            z-index: 1000; /* Ensure button is above sidebar */
-            font-size: 16px; /* Increase button size for touch */
-        }
-
-        @media (max-width: 768px) {
-            .content {
-                margin-left: 0; /* No margin for smaller screens */
-            }
-            .sidebar {
-                width: 200px; /* Adjust sidebar width for mobile */
-            }
-        }
-    </style>
-</head>
-
-<body>
-    <button class="toggle-btn" onclick="toggleSidebar()">Toggle Sidebar</button>
-
-    <div class="sidebar" id="sidebar">
-        <h2>Menu</h2>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Latest Anime</a></li>
-            <li><a href="#">Popular Anime</a></li>
-            <li><a href="#">Genres</a></li>
-            <li><a href="#">Contact Us</a></li>
-        </ul>
-    </div>
-
-    <div class="">
-        <h1></h1>
-        <p></p>
-    </div>
-
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('hidden');
-        }
-
-        // Optional: Close sidebar when clicking outside of it
-        document.addEventListener('click', function(event) {
-            const sidebar = document.getElementById('sidebar');
-            const toggleBtn = document.querySelector('.toggle-btn');
-
-            if (!sidebar.contains(event.target) && !toggleBtn.contains(event.target)) {
-                sidebar.classList.add('hidden');
-            }
-        });
-    </script>
-
-    <div class="content">
         <header id="head-">
             <div id="title1">
                 <div class="header-container">

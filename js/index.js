@@ -153,48 +153,19 @@ window.addEventListener("scroll", function () {
         document.querySelector(".popup-container").style.display = "none";
     });
 
-    // Make a request to the CORS proxy
-fetch('https://proxy11.sb543267gmailcom.workers.dev/?u=/?u=https://asta-api.sb543267gmailcom.workers.dev/api/data')
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error(error));
-
-// Gulpfile.js
-const gulp = require('gulp');
-const uglify = require('gulp-uglify');
-const concat = require('gulp-concat');
-
-gulp.task('minify-js', function() {
-  return gulp.src('js/*.js')
-    .pipe(uglify())
-    .pipe(concat('script.min.js'))
-    .pipe(gulp.dest('js'));
-});
-
-// LoadJS
-loadjs('./js/index.js', {
-    async: true,
-    defer: true
-  });
-
-  // tinypng.js
-const tinypng = require('tinypng');
-
-tinypng.compress('image.jpg', {
-  key: 'https://asta-api.sb543267gmailcom.workers.dev/',
-  sigFile: 'signature.txt'
-}).then(result => {
-  console.log(result);
-});
-
-// Add an event listener to the window load event
-window.addEventListener('load', () => {
-    // Get the preloader element
-    const preloader = document.getElementById('preloader');
-  
-    // Add a timeout to delay the removal of the preloader
-    setTimeout(() => {
-      preloader.style.display = 'none';
-    }, 2000); // 2 seconds
-  });
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+    
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+    
+    // Optional: Close the menu when clicking outside
+    document.addEventListener('click', (event) => {
+        if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
   

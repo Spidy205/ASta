@@ -129,6 +129,52 @@ section {
     position: relative;
 }
 
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: #000000;
+    position: relative;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(100%); /* Initially hidden */
+}
+
+.nav-menu.active {
+    transform: translateX(0); /* Show menu */
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    margin: 4px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0; /* Hide middle bar */
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
 #head-div {
     background: linear-gradient(to right, #000000 40%, #f45c43);
     padding-top: 25px;
