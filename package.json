@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "firebase": "^10.12.4",
     "loadjs": "^4.3.0",
     "posthog-js": "^1.138.0",
